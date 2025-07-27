@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @apply dark:bg-gray-900 dark:text-white;
+}
+body {
+  @apply bg-gray-900 text-white;
+}
+html, body, #root {
+  height: 100%;
+  background-color: #111827; /* warna dark */
+}
+/* Border gradien animasi */
+.premium-border {
+  position: relative;
+  border-radius: 0.75rem;
+  background: linear-gradient(#1f2937, #1f2937) padding-box,
+              linear-gradient(270deg, #3b82f6, #9333ea, #3b82f6) border-box;
+  border: 2px solid transparent;
+  background-size: 300% 300%;
+  animation: premiumBorderGradient 6s linear infinite;
+}
+
+/* Titik kilat keliling */
+.premium-border::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #3b82f6;
+  box-shadow: 0 0 8px #60a5fa;
+  top: -6px;
+  left: -6px;
+  animation: sparkAround 3s linear infinite;
+  z-index: 20;
+}
+
+/* Animasi gradien border */
+@keyframes premiumBorderGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Animasi titik kecil keliling */
+@keyframes sparkAround {
+  0%   { top: -6px; left: -6px; }
+  25%  { top: -6px; left: calc(100% - 6px); }
+  50%  { top: calc(100% - 6px); left: calc(100% - 6px); }
+  75%  { top: calc(100% - 6px); left: -6px; }
+  100% { top: -6px; left: -6px; }
+}
+.premium-border::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #3b82f6 70%, transparent 100%);
+  filter: blur(2px);
+  animation: spark-move 3s linear infinite;
+}
+
+@keyframes spark-move {
+  0% {
+    top: 0; left: 0; transform: translate(0, 0);
+  }
+  25% {
+    top: 0; right: 0; transform: translate(0, 0);
+  }
+  50% {
+    bottom: 0; right: 0; transform: translate(0, 0);
+  }
+  75% {
+    bottom: 0; left: 0; transform: translate(0, 0);
+  }
+  100% {
+    top: 0; left: 0; transform: translate(0, 0);
+  }
+}
+.premium-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
+  background-size: 300% 300%;
+  animation: premium-border-anim 3s linear infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}
+
+@keyframes premium-border-anim {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
